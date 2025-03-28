@@ -2,6 +2,7 @@ import Image from "next/image";
 import Partners from "@/components/partners";
 import Matches from "@/components/matches";
 import AboutUs from "@/components/about-us";
+import Players from "@/components/players";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
       <section>
         <div className="max-w-7xl mx-auto px-4 my-10">
           <h2 className="font-bold text-2xl mb-4 uppercase tracking-tight text-center">Players</h2>
-          <AboutUs />
+          <Players />
         </div>
       </section>
     </>
