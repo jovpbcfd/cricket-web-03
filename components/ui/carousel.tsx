@@ -2,11 +2,17 @@
 
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
+import Image from "next/image";
 
 interface SlideData {
-    title: string;
+    name: string;
+    role: string;
     button: string;
     src: string;
+    thumbnail: string
+    matches: number;
+    runs: number;
+    wickets: number;
 }
 
 interface SlideProps {
@@ -45,25 +51,25 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         };
     }, []);
 
-    const handleMouseMove = (event: React.MouseEvent) => {
-        const el = slideRef.current;
-        if (!el) return;
+    // const handleMouseMove = (event: React.MouseEvent) => {
+    //     const el = slideRef.current;
+    //     if (!el) return;
 
-        const r = el.getBoundingClientRect();
-        xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-        yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
-    };
+    //     const r = el.getBoundingClientRect();
+    //     xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
+    //     yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
+    // };
 
-    const handleMouseLeave = () => {
-        xRef.current = 0;
-        yRef.current = 0;
-    };
+    // const handleMouseLeave = () => {
+    //     xRef.current = 0;
+    //     yRef.current = 0;
+    // };
 
     const imageLoaded = (event: React.SyntheticEvent<HTMLImageElement>) => {
         event.currentTarget.style.opacity = "1";
     };
 
-    const { src, button, title } = slide;
+    const { src, wickets, runs, matches, name, thumbnail, role } = slide;
 
     return (
         <div className="[perspective:1200px] [transform-style:preserve-3d]">
@@ -72,8 +78,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                 className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out 
                 w-[70vmin] h-[50vmin] mx-[4vmin] z-10 "
                 onClick={() => handleSlideClick(index)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
                 style={{
                     transform:
                         current !== index
@@ -92,16 +96,18 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                                 : "none",
                     }}
                 >
-                    <img
+                    <Image
                         className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
                         style={{
                             opacity: current === index ? 1 : 0.5,
                         }}
-                        alt={title}
+                        alt={name}
                         src={src}
                         onLoad={imageLoaded}
                         loading="eager"
                         decoding="sync"
+                        width={640}
+                        height={460}
                     />
                     {current === index && (
                         <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
@@ -109,16 +115,34 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                 </div>
 
                 <article
-                    className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"
+                    className={`relative w-full pb-5 overflow-hidden transition-opacity text-center duration-1000 uppercase  ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"
                         }`}
                 >
-                    <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold  relative">
-                        {title}
+                    <Image src={thumbnail} width={200} height={200} alt={name} className="mx-auto w-[90px] h-[90px] md:h-[150px] md:w-[150px] lg:w-[200px] lg:h-[200px]" />
+                    <h2 className="text-lg md:text-2xl lg:text-[3xl] font-semibold  relative">
+                        <div>
+                            <span>{name.split(" ")[0]} </span>
+                            <span className="font-[900]">{name.split(" ")[1]} </span>
+                        </div>
+                        <span>{role}</span>
                     </h2>
-                    <div className="flex justify-center">
-                        <button className="mt-6  px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                            {button}
-                        </button>
+                    <div className="hidden md:flex md:items-center md:justify-center">
+                        <div className="w-full mt-2 py-6 bg-[url(/img/players/bg-score.webp)] bg-cover  bg-no-repeat flex items-center justify-center">
+                            <div>
+                                <p className="uppercase font-bold">Matches</p>
+                                <p>{matches}</p>
+                            </div>
+                            <div className="mx-5">|</div>
+                            <div>
+                                <p className="uppercase font-bold">Runs</p>
+                                <p>{runs}</p>
+                            </div>
+                            <div className="mx-5">|</div>
+                            <div>
+                                <p className="uppercase font-bold">Wickets</p>
+                                <p>{wickets}</p>
+                            </div>
+                        </div>
                     </div>
                 </article>
             </li>
@@ -139,7 +163,8 @@ const CarouselControl = ({
 }: CarouselControlProps) => {
     return (
         <button
-            className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${type === "previous" ? "rotate-180" : ""
+            className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full 
+                focus:border-[#460607] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${type === "previous" ? "rotate-180" : ""
                 }`}
             title={title}
             onClick={handleClick}

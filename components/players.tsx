@@ -5,28 +5,58 @@ import { Carousel } from "./ui/carousel";
 export default function Players() {
     const slideData = [
         {
-            title: "Mystic Mountains",
+            name: "Glenn Maxwell",
+            role: 'All-rounder',
             button: "Explore Component",
-            src: "https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=3534&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "/img/players/players-bg.webp",
+            thumbnail: '/img/players/player1.webp',
+            matches: 135,
+            runs: 2771,
+            wickets: 31
         },
         {
-            title: "Urban Dreams",
+            name: "Shashank Singh",
+            role: 'Batter',
             button: "Explore Component",
-            src: "https://images.unsplash.com/photo-1518710843675-2540dd79065c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "/img/players/players-bg.webp",
+            thumbnail: '/img/players/player2.webp',
+            matches: 25,
+            runs: 467,
+            wickets: 1,
         },
         {
-            title: "Neon Nights",
+            name: "Nehal Wadhera",
+            role: 'All-rounder',
             button: "Explore Component",
-            src: "https://images.unsplash.com/photo-1590041794748-2d8eb73a571c?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "/img/players/players-bg.webp",
+            thumbnail: '/img/players/player3.webp',
+            matches: 20,
+            runs: 350,
+            wickets: 0
         },
         {
-            title: "Desert Whispers",
+            name: "Marco Jansen",
+            role: 'All-rounder',
             button: "Explore Component",
-            src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "/img/players/players-bg.webp",
+            thumbnail: '/img/players/player4.webp',
+            matches: 22,
+            runs: 66,
+            wickets: 21
+        },
+        {
+            name: "Marcus Stoinis",
+            role: 'All-rounder',
+            button: "Explore Component",
+            src: "/img/players/players-bg.webp",
+            thumbnail: '/img/players/player5.webp',
+            matches: 97,
+            runs: 1886,
+            wickets: 43
         },
     ];
     return (
-        <div className="relative overflow-hidden w-full h-full py-20">
+        <div className="relative overflow-hidden w-full h-full py-2 md:pt-10 md:pb-20">
             <Carousel slides={slideData} />
         </div>
     );

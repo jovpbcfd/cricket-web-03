@@ -7,7 +7,16 @@ const officialPartnerLogos = [
     'partners/campa.webp',
     'partners/dazller.webp',
     'partners/highland.webp',
+    'partners/dream11.webp',
     'partners/neo.webp',
+    'partners/amul.webp',
+    'partners/big-fm-logo.webp',
+    'partners/district.webp',
+    'partners/kingfisher.webp',
+    'partners/real-cricket.webp',
+    'partners/spinner.webp',
+    'partners/t10.webp',
+    'partners/tour-on.webp',
 ]
 const principalPartnerLogos = [
     'principal-partners/all-seasons.webp',
