@@ -10,8 +10,8 @@ export default function Home() {
     <>
       <section className="mt-0 mb-2 md:my-5">
         <div className='bg-[url(/img/HERO-BANNER-WEBBP.webp)] bg-center bg-no-repeat w-full flex items-center h-[200px] md:h-[633px] md:items-start'>
-          <div className="self-center text-center w-full md:px-8 md:w-[30%]">
-            <h1 className="text-white font-[900] text-2xl uppercase md:text-5xl">Hero section title Lorem ipsum dolor sit amet.</h1>
+          <div className="self-center text-center w-full md:pl-10 md:w-[30%]">
+            <h1 className="text-white font-[900] text-2xl uppercase md:text-3xl">Hero section title Lorem ipsum dolor sit amet.</h1>
           </div>
         </div>
       </section>
