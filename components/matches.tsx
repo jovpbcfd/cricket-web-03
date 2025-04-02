@@ -1,8 +1,11 @@
+'use client'
 import Image from "next/image";
+import { useRouter } from "next/navigation"
 
 import { liveMatches } from "@/data/matches";
 
 export default function Matches() {
+    const router = useRouter();
     return (
         <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-5'>
             {liveMatches.map((match) => (
@@ -44,7 +47,7 @@ export default function Matches() {
                             <div className="border-t-1 border-gray-200">
                                 <p className="py-2 md:py-3">Match begins at {match.startTime}</p>
                             </div>
-                            <button className="w-full border border-gray-200 py-2 cursor-pointer duration-300 ease-in hover:text-white hover:bg-red-500 md:w-[70%]">
+                            <button onClick={() => router.push(`/matches/${match.id}`)} className="w-full border border-gray-200 py-2 cursor-pointer duration-300 ease-in hover:text-white hover:bg-red-500 md:w-[70%]">
                                 Match center
                             </button>
                         </div>
